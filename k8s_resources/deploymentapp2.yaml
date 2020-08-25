@@ -5,7 +5,7 @@ metadata:
   labels:
     app: app2
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: app2
@@ -15,7 +15,27 @@ spec:
         app: app2
     spec:
       containers:
-      - name: flask
-        image: noureddined123/flaskapp2:latest
-        ports:
-        - containerPort: 5001
+        - name: proxy
+          image: noureddined123/pythonproxy
+          imagePullPolicy: Always
+          env:
+            - name: APPD_PROXY_CONTROL_PATH
+              value: /tmp/appd/run
+          volumeMounts:
+          - name: shared-data
+            mountPath: /tmp/appd/run
+        - name: flask
+          image: noureddined123/flaskapp2:latest
+          imagePullPolicy: Always
+          env:
+            - name: APPD_PROXY_CONTROL_PATH
+              value: /tmp/appd/run
+          volumeMounts:
+          - name: shared-data
+            mountPath: /tmp/appd/run
+          ports:
+          - containerPort: 5001
+      restartPolicy: Always
+      volumes:
+      - name: shared-data
+        emptyDir: {}
