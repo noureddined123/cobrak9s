@@ -35,10 +35,6 @@ spec:
             mountPath: /tmp/appd/run
           ports:
           - containerPort: 5000
-          lifecycle:
-            postStart:
-              exec:
-                command: ["export ", "-c", {{cmd}}]
       restartPolicy: Always
       volumes:
       - name: shared-data
