@@ -15,4 +15,5 @@ RUN pip install -r requirements.txt
 COPY . /app
 
 
-CMD ["/usr/local/bin/pyagent", "run", "--use-manual-proxy" ,"-c", "/etc/appdynamics.cfg", "--", "/usr/bin/python", "main.py" ]
+
+CMD ["/bin/bash", "startenv.sh" ]
