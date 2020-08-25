@@ -23,7 +23,7 @@ spec:
               value: /tmp/appd/run
           volumeMounts:
           - mountPath: "/tmp/appd/run"
-              name: task-pv-storage
+            name: task-pv-storage
       restartPolicy: Always
       volumes:
         - name: task-pv-storage
