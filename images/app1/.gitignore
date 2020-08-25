@@ -2,6 +2,10 @@
 ### VirtualEnv template
 # Virtualenv
 # http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+
+.idea/
+
+
 .Python
 [Bb]in
 [Ii]nclude
