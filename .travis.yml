@@ -5,6 +5,9 @@ services:
 deploy_services_job: &DEPLOY_SERVICE_JOB
   script:
     - cd ${TRAVIS_BUILD_DIR}/images/${SERVICE_PATH}
+    - sed -i -e 's/APPD_HOST/$APPD_HOST/g' appdynamics.cfg
+    - sed -i -e 's/APPD_ACCOUNT/$APPD_ACCOUNT/g' appdynamics.cfg
+    - sed -i -e 's/APPD_ACCESSKEY/$APPD_ACCESSKEY/g' appdynamics.cfg
     - docker build -t ${APP_NAME} .
 
   after_success:
@@ -14,6 +17,7 @@ deploy_services_job: &DEPLOY_SERVICE_JOB
     - docker tag ${APP_NAME} $DOCKER_USER/${APP_NAME}:latest
     - docker push $DOCKER_USER/${APP_NAME}:latest
     - cd -
+
 jobs:
   include:
     - <<: *DEPLOY_SERVICE_JOB
