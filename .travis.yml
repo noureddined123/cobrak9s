@@ -5,9 +5,9 @@ services:
 deploy_services_job: &DEPLOY_SERVICE_JOB
   script:
     - cd ${TRAVIS_BUILD_DIR}/images/${SERVICE_PATH}
-    - sed -i -e 's/APPD_HOST/$APPD_HOST/g' appdynamics.cfg
-    - sed -i -e 's/APPD_ACCOUNT/$APPD_ACCOUNT/g' appdynamics.cfg
-    - sed -i -e 's/APPD_ACCESSKEY/$APPD_ACCESSKEY/g' appdynamics.cfg
+    - if $FLASK_BUILD; then sed -i -e "s/APPD_HOST/$APPD_HOST/g" appdynamics.cfg; else echo 0; fi
+    - if $FLASK_BUILD; then sed -i -e "s/APPD_ACCOUNT/$APPD_ACCOUNT/g" appdynamics.cfg; else echo 0; fi
+    - if $FLASK_BUILD; then sed -i -e "s/APPD_HOST/$APPD_ACCESSKEY/g" appdynamics.cfg; else echo 0; fi
     - docker build -t ${APP_NAME} .
 
   after_success:
@@ -25,11 +25,13 @@ jobs:
       env:
         -SERVICE_PATH="app1"
         -APP_NAME="flaskapp1"
+        -FLASK_BUILD=True
     - <<: *DEPLOY_SERVICE_JOB
       name: "Deploy app2"
       env:
         -SERVICE_PATH="app2"
         -APP_NAME="flaskapp2"
+        -FLASK_BUILD=True
     - <<: *DEPLOY_SERVICE_JOB
       name: "Deploy loadgen"
       env:
