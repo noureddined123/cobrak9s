@@ -1,0 +1,11 @@
+sudo: required
+services:
+  - docker
+script:
+  - docker build -t loadgen
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker tag loadgen $DOCKER_USER/loadgen:$TRAVIS_BUILD_NUMBER
+  - docker push $DOCKER_USER/loadgen:$TRAVIS_BUILD_NUMBER
+  - docker tag loadgen $DOCKER_USER/loadgen:latest
+  - docker push $DOCKER_USER/loadgen:latest
