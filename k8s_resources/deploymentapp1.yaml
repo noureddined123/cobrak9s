@@ -15,7 +15,27 @@ spec:
         app: app1
     spec:
       containers:
-      - name: flask
-        image: noureddined123/flaskapp1:latest
-        ports:
-        - containerPort: 5000
+        - name: proxy
+          image: noureddined123/pythonproxy
+          imagePullPolicy: Always
+          env:
+            - name: APPD_PROXY_CONTROL_PATH
+              value: /tmp/appd/run
+          volumeMounts:
+          - name: shared-data
+            mountPath: /tmp/appd/run
+        - name: flask
+          image: noureddined123/flaskapp1:latest
+          imagePullPolicy: Always
+          env:
+            - name: APPD_PROXY_CONTROL_PATH
+              value: /tmp/appd/run
+          volumeMounts:
+          - name: shared-data
+            mountPath: /tmp/appd/run
+          ports:
+          - containerPort: 5000
+      restartPolicy: Always
+      volumes:
+      - name: shared-data
+        emptyDir: {}

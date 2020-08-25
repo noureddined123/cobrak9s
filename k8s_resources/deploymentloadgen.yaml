@@ -18,4 +18,4 @@ spec:
       - name: loadgen
         image: noureddined123/loadgen:latest
         ports:
-        - containerPort: 80
+        - containerPort: 5004
