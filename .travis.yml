@@ -5,7 +5,7 @@ services:
 deploy_services_job: &DEPLOY_SERVICE_JOB
   script:
     - cd ${TRAVIS_BUILD_DIR}/images/${SERVICE_PATH}
-    - docker build -t ${SERVICE_PATH}
+    - docker build -t ${SAPP_NAME}
 
   after_success:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
