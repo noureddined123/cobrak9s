@@ -1,33 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1
+  name: proxy
   labels:
-    app: app1
+    app: proxy
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: app1
+      app: prxy
   template:
     metadata:
       labels:
-        app: app1
+        app: proxy
     spec:
       containers:
-        - name: flask
-          image: noureddined123/flaskapp1:latest
+        - name: proxy
+          image: noureddined123/pythonproxy
           imagePullPolicy: Always
           env:
             - name: APPD_PROXY_CONTROL_PATH
               value: /tmp/appd/run
           volumeMounts:
-          - name: task-pv-storage
-            mountPath: /tmp/appd/run
-          ports:
-          - containerPort: 5000
+          - mountPath: "/tmp/appd/run"
+              name: task-pv-storage
       restartPolicy: Always
       volumes:
-      - name: task-pv-storage
+        - name: task-pv-storage
           persistentVolumeClaim:
             claimName: task-pv-claim
