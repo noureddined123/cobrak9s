@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deploymeny
 metadata:
   name: proxy
   labels:
@@ -8,6 +8,7 @@ spec:
   selector:
     matchLabels:
       app: proxy
+  replicas: 1
   template:
     metadata:
       labels:
@@ -22,10 +23,9 @@ spec:
               value: /tmp/appd/run
           volumeMounts:
           - mountPath: /tmp/appd/run
-            name: proxy-dir
+            name: persistent-storage
       restartPolicy: Always
       volumes:
-        - name: proxy-dir
-          hostPath:
-            path: /tmp/appd
-            type: Directory
+        - name: persistent-storage
+          persistentVolumeClaim:
+            claimName: nfs
