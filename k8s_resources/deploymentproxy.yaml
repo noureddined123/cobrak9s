@@ -1,11 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: proxy
   labels:
     app: proxy
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: proxy
@@ -22,10 +21,11 @@ spec:
             - name: APPD_PROXY_CONTROL_PATH
               value: /tmp/appd/run
           volumeMounts:
-          - mountPath: "/tmp/appd/run"
-            name: task-pv-storage
+          - mountPath: /tmp/appd/run
+            name: proxy-dir
       restartPolicy: Always
       volumes:
-        - name: task-pv-storage
-          persistentVolumeClaim:
-            claimName: task-pv-claim
+        - name: proxy-dir
+          hostPath:
+            path: /tmp/appd
+            type: Directory
