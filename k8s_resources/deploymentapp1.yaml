@@ -22,12 +22,13 @@ spec:
             - name: APPD_PROXY_CONTROL_PATH
               value: /tmp/appd/run
           volumeMounts:
-          - name: task-pv-storage
+          - name: proxy-dir
             mountPath: /tmp/appd/run
           ports:
           - containerPort: 5000
       restartPolicy: Always
       volumes:
-        - name: task-pv-storage
-          persistentVolumeClaim:
-            claimName: task-pv-claim
+        - name: proxy-dir
+          hostPath:
+            path: /tmp/appd
+            type: Directory
