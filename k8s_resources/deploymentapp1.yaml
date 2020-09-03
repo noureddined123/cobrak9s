@@ -22,7 +22,7 @@ spec:
             - name: APPD_PROXY_CONTROL_PATH
               value: /tmp/appd/run
           volumeMounts:
-          - name: persistent- storage
+          - name: persistent-storage
             mountPath: /tmp/appd/run
           ports:
           - containerPort: 5000
