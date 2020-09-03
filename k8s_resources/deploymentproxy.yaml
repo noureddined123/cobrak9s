@@ -22,9 +22,10 @@ spec:
               value: /tmp/appd/run
           volumeMounts:
           - mountPath: /tmp/appd/run
-            name: persistent-storage
+            name: proxy-dir
       restartPolicy: Always
       volumes:
-        - name: persistent-storage
-          persistentVolumeClaim:
-            claimName: nfs
+        - name: proxy-dir
+          hostPath:
+            path: /tmp/appd
+            type: DirectoryOrCreate
