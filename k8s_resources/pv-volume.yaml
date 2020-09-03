@@ -10,5 +10,5 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: ec2-54-213-222-32.us-west-2.compute.amazonaws.com
+    server: ip-10-96-2-216.us-west-2.compute.internal
     path: "/var/appd"
