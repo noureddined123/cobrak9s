@@ -29,6 +29,6 @@ spec:
       restartPolicy: Always
       volumes:
         - name: proxy-dir
-            hostPath:
-              path: /tmp/appd
-              type: Directory
+          hostPath:
+            path: /tmp/appd
+            type: Directory
