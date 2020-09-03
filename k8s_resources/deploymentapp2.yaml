@@ -22,12 +22,13 @@ spec:
             - name: APPD_PROXY_CONTROL_PATH
               value: /tmp/appd/run
           volumeMounts:
-          - name: persistent-storage
+          - name: proxy-dir
             mountPath: /tmp/appd/run
           ports:
           - containerPort: 5001
       restartPolicy: Always
       volumes:
-        - name: persistent-storage
-          persistentVolumeClaim:
-            claimName: nfs
+        - name: proxy-dir
+          hostPath:
+            path: /var/appd
+            type: Directory
