@@ -12,4 +12,4 @@ ADD startup.sh /opt/appdynamics/startup.sh
 
 
 # ENTRYPOINT ["/opt/appdynamics/startup.sh"]
-CMD ["/bin/bash", "/opt/appdynamics/startup.sh" ]
+CMD  ["/bin/bash", "/opt/appdynamics/startup.sh" ]
