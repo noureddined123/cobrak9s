@@ -27,5 +27,5 @@ spec:
       volumes:
         - name: proxy-dir
           hostPath:
-            path: /tmp/appd
+            path: /var/appd
             type: DirectoryOrCreate
