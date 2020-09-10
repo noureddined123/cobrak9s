@@ -5,6 +5,9 @@ spec:
     volumeMounts:
     - mountPath: /opt/appdynamics
       name: appd-agent-repo
+    envFrom:
+    - configMapRef:
+      name: appd-nodejs-config
   initContainers:
   - command:
     - cp
