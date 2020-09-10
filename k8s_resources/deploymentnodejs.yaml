@@ -9,6 +9,9 @@ spec:
     matchLabels:
       app: nodejs
   template:
+    metadata:
+      labels:
+        app: nodejs
     spec:
       containers:
         - name: nodejs
