@@ -23,11 +23,11 @@ spec:
                   name: appd-agent-secret
       initContainers:
       - name: nodejsinit
-      - command:
-        - cp
-        - -r
-        - /opt/appdynamics/.
-        - /opt/temp
+        command:
+          - cp
+          - -r
+          - /opt/appdynamics/.
+          - /opt/temp
         image: noureddined123/nodejsinit:latest
         volumeMounts:
         - mountPath: /opt/temp
