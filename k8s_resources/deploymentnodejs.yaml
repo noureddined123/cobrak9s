@@ -19,7 +19,7 @@ spec:
           - name: APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY
             valueFrom:
               secretKeyRef:
-                name: appd-agent-secret
+                  name: appd-agent-secret
                 - key: access-key
         initContainers:
         - command:
