@@ -9,31 +9,35 @@ spec:
     matchLabels:
       app: nodejs
   template:
+    metadata:
+      labels:
+        app: nodejs
     spec:
       containers:
-        image: noureddined123/app3njs:latest
-        volumeMounts:
-        - mountPath: /opt/appdynamics
-          name: appd-agent-repo
-        envFrom:
-        - configMapRef:
-          name: appd-nodejs-config
-        env:
-        - name: APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY
-          valueFrom:
-          secretKeyRef:
-            name: appd-agent-secret
-            key: access-key
-      initContainers:
-      - command:
-        - cp
-        - -r
-        - /opt/appdynamics/.
-        - /opt/temp
-        image: noureddined123/nodejsinit:latest
-        volumeMounts:
-        - mountPath: /opt/temp
-          name: appd-agent-repo
-      volumes:
         - name: appd-agent-repo
-          emptyDir: {}
+          image: noureddined123/app3njs:latest
+          volumeMounts:
+          - mountPath: /opt/appdynamics
+
+          envFrom:
+          - configMapRef:
+            name: appd-nodejs-config
+          env:
+          - name: APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY
+            valueFrom:
+            secretKeyRef:
+              name: appd-agent-secret
+              key: access-key
+        initContainers:
+        - command:
+          - cp
+          - -r
+          - /opt/appdynamics/.
+          - /opt/temp
+          image: noureddined123/nodejsinit:latest
+          volumeMounts:
+          - mountPath: /opt/temp
+            name: appd-agent-repo
+        volumes:
+          - name: appd-agent-repo
+            emptyDir: {}
