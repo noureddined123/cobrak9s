@@ -16,21 +16,21 @@ spec:
           - configMapRef:
               name: appd-nodejs-config
           env:
-          - name: APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY
-            valueFrom:
-              secretKeyRef:
-              - key: access-key
-              - name: appd-agent-secret
-        initContainers:
-        - command:
-          - cp
-          - -r
-          - /opt/appdynamics/.
-          - /opt/temp
-          image: noureddined123/nodejsinit:latest
-          volumeMounts:
-          - mountPath: /opt/temp
-            name: appd-agent-repo
-        volumes:
-          - name: appd-agent-repo
-            emptyDir: {}
+            - name: APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: access-key
+                  name: appd-agent-secret
+      initContainers:
+      - command:
+        - cp
+        - -r
+        - /opt/appdynamics/.
+        - /opt/temp
+        image: noureddined123/nodejsinit:latest
+        volumeMounts:
+        - mountPath: /opt/temp
+          name: appd-agent-repo
+      volumes:
+        - name: appd-agent-repo
+          emptyDir: {}
