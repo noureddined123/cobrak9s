@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 spec:
   selector:
+    matchLabels:
+      app: nodejs
   template:
     spec:
       containers:
