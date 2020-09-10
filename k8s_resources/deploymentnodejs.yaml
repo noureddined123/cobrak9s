@@ -1,5 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
+metadata:
+  name: nodejs
+  labels:
+    app: nodejs
 spec:
   selector:
     matchLabels:
