@@ -6,19 +6,13 @@ metadata:
     app: nodejs
 spec:
   selector:
-    matchLabels:
-      app: nodejs
   template:
-    metadata:
-      labels:
-        app: nodejs
     spec:
       containers:
-        - name: appd-agent-repo
-          image: noureddined123/app3njs:latest
+        - image: noureddined123/app3njs:latest
           volumeMounts:
           - mountPath: /opt/appdynamics
-
+            name: appd-agent-repo
           envFrom:
           - configMapRef:
             name: appd-nodejs-config
@@ -26,7 +20,7 @@ spec:
           - name: APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY
             valueFrom:
             secretKeyRef:
-              - name: appd-agent-secret
+              name: appd-agent-secret
               key: access-key
         initContainers:
         - command:
