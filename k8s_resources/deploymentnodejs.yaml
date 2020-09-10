@@ -13,8 +13,8 @@ spec:
           - mountPath: /opt/appdynamics
             name: appd-agent-repo
           envFrom:
-          - configMapRef:
-            name: appd-nodejs-config
+            - configMapRef:
+              name: appd-nodejs-config
           env:
           - name: APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY
             valueFrom:
