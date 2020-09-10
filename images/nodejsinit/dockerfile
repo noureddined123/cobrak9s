@@ -1,0 +1,14 @@
+FROM node:14.4-alpine as installer
+
+WORKDIR /opt/appdynamics
+
+RUN npm install appdynamics@next
+
+COPY ./shim.js /opt/appdynamics/shim.js
+
+FROM alpine
+
+
+COPY --from=installer /opt/appdynamics /opt/appdynamics
+
+CMD [ "echo", "Just delivering the Node.js Agent. Use me in Init Containers in Kubernetes." ]

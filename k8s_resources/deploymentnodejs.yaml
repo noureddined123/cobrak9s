@@ -1,0 +1,20 @@
+kind: Deployment
+spec:
+  containers:
+    image: noureddined123/app3njs:latest
+    volumeMounts:
+    - mountPath: /opt/appdynamics
+      name: appd-agent-repo
+  initContainers:
+  - command:
+    - cp
+    - -r
+    - /opt/appdynamics/.
+    - /opt/temp
+    image: noureddined123/nodejsinit:latest
+    volumeMounts:
+    - mountPath: /opt/temp
+      name: appd-agent-repo
+  volumes:
+    - name: appd-agent-repo
+      emptyDir: {}
