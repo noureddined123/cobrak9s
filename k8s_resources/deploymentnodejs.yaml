@@ -21,7 +21,6 @@ spec:
               secretKeyRef:
                 - key: access-key
                   name: appd-agent-secret
-
         initContainers:
         - command:
           - cp
