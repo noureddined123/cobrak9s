@@ -20,7 +20,7 @@ spec:
             valueFrom:
               secretKeyRef:
               - key: access-key
-                name: appd-agent-secret
+              - name: appd-agent-secret
         initContainers:
         - command:
           - cp
