@@ -43,7 +43,7 @@ jobs:
         -SERVICE_PATH="pythonproxy"
         -APP_NAME="pythonproxy"
     - <<: *DEPLOY_SERVICE_JOB
-        name: "Deploy app3njs"
-        env:
-          -SERVICE_PATH="app3njs"
-          -APP_NAME="app3njs"
+      name: "Deploy app3njs"
+      env:
+        -SERVICE_PATH="app3njs"
+        -APP_NAME="app3njs"
