@@ -1,26 +1,27 @@
-//const https = require('https');
-const request = require('request');
+var rp = require('request-promise');
+var http = require('http');
 
 
+//create a server object:
+http.createServer(function (req, res) {
 
-//function myFunc(){
-//    https.get('https://www.google.com/', (resp) => {
-//        resp.on('end', () => {
-//        console.log('test');
-//    });
-//    }).on("error", (err) => {
-//        console.log("Error: " + err.message);
-//    });
-//}
-
-
-    function test(){
-    request('https://jsonplaceholder.typicode.com/todos/1', { json: true }, (err, res, body) => {
-    if (err) { return console.log(err); }
-    console.log(body.title);
-    console.log(body.completed)
-
+    rp('http://www.appdynamics.com')
+    .then(function (htmlString) {
+        res.write('Hello World!'); //write a response to the client
+        res.end();//end the response - else error
+    })
+    .catch(function (err) {
+        res.write('ERROR Roel!'); //write a response to the client
+        res.end();//end the response - else error
     });
-    }
-    setInterval(test, 5000);
+
+
+
+}).listen(8080); //the server object listens on port 8080
+
+
+
+
+
+
 

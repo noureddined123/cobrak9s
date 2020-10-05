@@ -4,5 +4,7 @@ WORKDIR /app
 
 COPY . /app
 RUN npm install request
+RUN npm install request-promise
+RUN npm install http
 
 CMD ["node", "index.js" ]
