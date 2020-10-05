@@ -7,7 +7,7 @@ require("appdynamics").profile({
   applicationName: process.env.APPDYNAMICS_AGENT_APPLICATION_NAME,
   tierName: process.env.APPDYNAMICS_AGENT_TIER_NAME,
   reuseNode: true,
-  reuseNodePrefix: process.env.APPDYNAMICS_AGENT_NODE_NAME,
+  reuseNodePrefix: process.env.APPDYNAMICS_AGENT_NODE_NAME
   // analytics: {
   //   host: <analyticsHostName>,
   //   port: <analyticsPort>,
