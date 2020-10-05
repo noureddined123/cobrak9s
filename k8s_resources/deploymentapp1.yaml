@@ -30,5 +30,5 @@ spec:
       volumes:
         - name: proxy-dir
           hostPath:
-            path: /tmp/appd
+            path: /home/centos/appd
             type: Directory
